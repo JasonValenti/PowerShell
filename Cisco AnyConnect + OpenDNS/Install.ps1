@@ -1,7 +1,7 @@
 <#
 Install - Cisco AnyConnect 4.3 w\ Additional cleanup
 Author: Jason Valenti
-Last Modified Date: 4/13/2018
+Last Modified Date: 4/20/2018
 Rev: 1.12
 
 Description:# This scrpt was developed to provide a solution to cleanup old XML files and legacy hotspot shortcuts on client systems. There are a number of systems still with these shortcuts and profiles.
