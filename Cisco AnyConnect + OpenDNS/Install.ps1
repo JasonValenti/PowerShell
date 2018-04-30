@@ -106,7 +106,7 @@ Foreach($package in $MsiPackages)
         catch{Write-Error}
 }   
 
-#Copy XML and Launch vonui.exe
+#Copy XML and Launch vpnui.exe
 Try{ 
     "$(Get-TimeStamp) [STATUS] Copying XML and Umbrella OrgInfo...." | Write-Log
     Copy-Item .\ATS_VPNOpenDNS.xml -Destination "$ProfileDir" *>> $Log 
