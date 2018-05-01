@@ -28,8 +28,13 @@ $Arch = (Get-CimInstance Win32_operatingsystem).OSArchitecture #Environment vari
 Check-LogDir
 Check-LogFile
 
+#Report running environment - This is used to report back if the powershell is running as 32-bit or 64-bit. This is vauleable infromation when running powershell from KACE.
+$Running64 = [Environment]::Is64BitProcess
+"$(Get-TimeStamp) [STATUS] Running 64-bit: $Running64" | Write-Log
+
+
 #Check if system is 32-bit and if not then exit and fail script
-"$(Get-TimeStamp) [STATUS] System architecture is: $Arch" 
+"$(Get-TimeStamp) [STATUS] System architecture is: $Arch" | Write-Log
 if ($Arch -match '32' -or $Arch -match '86')
 {
     "$(Get-TimeStamp) [ERROR] System Architecture is 32-bit, this version of ePLAN does not support 32-bit Systems" | %{write-host -ForegroundColor Red  $_; out-file -filepath $log -inputobject $_ -append}
