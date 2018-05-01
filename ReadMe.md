@@ -5,3 +5,4 @@ This repo contains a number of scripts used for software deployment and removal.
 |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |Cisco AnyConnect + OpenDNS| This contains the script used for the deployment of Cisco AnyConnect 4.3. Also contains some checks for removing legacy data that is interfering on some systems.|
 |EPLAN P8 2.6              | This contains the script used for the deployment of EPLAN P8 v2.6. This was a conversion and modification from the origional EPLAN Batch install provide by EPLAN|
+|KACE Agent Reapir         | This contains the script used to reapir the KACE agents that are shown as connected but never invenotry back to the K1000.|
