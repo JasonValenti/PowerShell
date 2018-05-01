@@ -1,7 +1,7 @@
 <#
 Install - Eplan P8 v2.6
 Modified by - Jason Valenti
-Last Modified Date - 4/25/2018
+Last Modified Date - 4/30/2018
 Rev: 1.12
 
 Description:# This script is a ported over from the origonal batch file provided via EPLAN. This script will install EPLAN P8 v2.6 on the machine that its run on. Note that this
