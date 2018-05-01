@@ -23,13 +23,16 @@ $SucessfullMachinesList = "$logDir\Sucessfull.log"
 Check-LogDir
 Check-LogFile
 
+#Run the following code for each computer name found in the computer names varible. This variable is collected from a local text file.
 foreach ($computer in $computernames) 
 {
+        #Test if he machine is reachable before running any further code, if not move on to the next
         if (Test-Connection $computer -count 2 -Quiet)
         {  
                 "$(Get-TimeStamp) [STATUS] $Computer is online!" | Write-Log
                 "$(Get-TimeStamp) [STATUS] Deleting the KBOT 4 direcotry on $computer" | Write-Log
 
+                #Delete the kbot\4 directory that is holding up the invenotry, agent will pull this down again at next inventory
                 try{Remove-Item -Path \\$computer\c$\ProgramData\dell\KACE\kbots_cache\packages\kbots\4 -Recurse -Force -ErrorAction Stop}
                 catch
                 {
@@ -40,17 +43,16 @@ foreach ($computer in $computernames)
                 
                 "$(Get-TimeStamp) [STATUS] KBOT 4 sucessfull removed, forcing inventory on $computer" | Write-Log
 
+                #After a scussful delete of the KBOT 4 direcotry force an inventory and pull the down the lastes inventory script (4 being the inventory script, 0 being pull the latest)
                 try{& psexec.exe \\$computer "c:\Program Files (x86)\Dell\KACE\runkbot.exe" 4 0 >> $log}
                 catch
                 {
                         "$(Get-TimeStamp) [ERROR] kbot did not exit successfully." | %{write-host -ForegroundColor Red  $_; out-file -filepath $log -inputobject $_ -append}
                 }
-                # Invoke-Command -ComputerName $computer -ScriptBlock {try{& "$env:Systemdrive\Program Files (x86)\Dell\KACE\runkbot.exe" 4 0 }catch{Write-Error}}
+                
 
                 "$(Get-TimeStamp) [STATUS] Repair Complete on $computer" | Write-Log
                 "$(Get-TimeStamp) [STATUS] Check KACE for inventory Status" | Write-Log
-
-                #Out-File -FilePath $SucessfullMachinesList -InputObject "$computer" -Append
         }
         else
         {
