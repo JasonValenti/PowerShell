@@ -57,12 +57,12 @@ if ($Arch -match '32' -or $Arch -match '86')
 "$(Get-TimeStamp) [STATUS] Installation will now begin..." | Write-Log
 try{
     "$(Get-TimeStamp) [STATUS] Installing License client(Win32)...." | Write-Log
-        $Install = Start-Process msiexec.exe -ArgumentList "/i `"$AppDir\License Client (Win32)\EPLAN License Client.msi`" /qn" -wait -passthru
+        $Install = Start-Process "$AppDir\License Client (Win32)\setup.exe" -ArgumentList "/q /L 1033" -wait -passthru
         $ExitCode = $Install.ExitCode
         Check-ExitCode
 
     "$(Get-TimeStamp) [STATUS] Instlling License Client(x64)...." | Write-Log
-        $Install = Start-Process msiexec.exe -ArgumentList "/i `"$AppDir\License Client (x64)\EPLAN License Client$ESS_BITF.msi`" /qn" -Wait -PassThru
+        $Install = Start-Process "$AppDir\License Client (x64)\setup.exe" -ArgumentList "/q /L 1033" -Wait -PassThru
         $ExitCode = $Install.ExitCode
         Check-ExitCode
 

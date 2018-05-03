@@ -40,17 +40,18 @@ foreach ($computer in $computernames)
                         "$(Get-TimeStamp) [Status] Moving to next compuer..." | Write-Log
                         Continue
                 }
+                <#
                 
                 "$(Get-TimeStamp) [STATUS] KBOT 4 sucessfull removed, forcing inventory on $computer" | Write-Log
 
-                #After a scussful delete of the KBOT 4 direcotry force an inventory and pull the down the lastes inventory script (4 being the inventory script, 0 being pull the latest)
+                After a scussful delete of the KBOT 4 direcotry force an inventory and pull the down the lastes inventory script (4 being the inventory script, 0 being pull the latest)
                 try{& psexec.exe \\$computer "c:\Program Files (x86)\Dell\KACE\runkbot.exe" 4 0 >> $log}
                 catch
                 {
                         "$(Get-TimeStamp) [ERROR] kbot did not exit successfully." | %{write-host -ForegroundColor Red  $_; out-file -filepath $log -inputobject $_ -append}
                 }
                 
-
+                #>
                 "$(Get-TimeStamp) [STATUS] Repair Complete on $computer" | Write-Log
                 "$(Get-TimeStamp) [STATUS] Check KACE for inventory Status" | Write-Log
         }
